@@ -2,6 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
 
+This project shows how to dynamically add in components to display and make the their form part of the over all reactive form.
+
+In this example, I default to one component showing with certain validations and the when clicking the toggle button I remove all the previous validators and load the new component and propogate the new component value and validators.
+
+This can be handy if you have lots of components to switch between. You can just add the component to the entry modules and in the componentlist in the directive. Inputs and outputs can be specified by using interfaces. 
+
+This saves having 100s of 'NgIf' in the main template and every view checking all the ngifs
+
+
 ## Make sure
 
 The components that are being loaded make sure the form is set in the constructor:
