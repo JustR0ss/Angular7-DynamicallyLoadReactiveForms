@@ -1,6 +1,19 @@
-# MyApp
+# DynamicallyLoadReactiveForms
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
+
+## Make sure
+
+The components that are being loaded make sure the form is set in the constructor:
+
+constructor(private fb: FormBuilder) {
+        this.form = this.fb.group({
+            selectedColor: ['', [Validators.minLength(4), Validators.required]]
+        });
+}
+
+The components that are getting loaded have to be put in the entryComponents array in the app.module.ts as part of the mgmodule otherwise as part of the treeshaker in the angular build the project wont include that component as there is no link.
+
 
 ## Development server
 
