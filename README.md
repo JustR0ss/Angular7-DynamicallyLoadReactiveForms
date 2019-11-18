@@ -16,6 +16,7 @@ This saves having 100s of 'NgIf' in the main template and every view checking al
 The components that are being loaded make sure the form is set in the constructor:
 
 constructor(private fb: FormBuilder) {
+
         this.form = this.fb.group({
             selectedColor: ['', [Validators.minLength(4), Validators.required]]
         });
@@ -31,13 +32,19 @@ When the dynamic component changes, the validators for those fields need to be r
 
 
 **Inside the parent:**
+
 this.form.get('color').setValidators(undefined);
+
 this.form.get('color').updateValueAndValidity({ emitEvent: false });
 
 **Inside the directive**
+
 this.container.clear(); // Remove the component view
+
 this.validators = []; // Remove the validators
+
 this._control = this.formDirective.removeControl(this); // Remove the previous control instance of the directive.
+
 this.valueAccessor = undefined; // Remove previous form value.
 
 
