@@ -1,4 +1,4 @@
-# DynamicallyLoadReactiveForms
+# Dynamically Load Reactive Forms
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
 
@@ -21,7 +21,24 @@ constructor(private fb: FormBuilder) {
         });
 }
 
-The components that are getting loaded have to be put in the entryComponents array in the app.module.ts as part of the mgmodule otherwise as part of the treeshaker in the angular build the project wont include that component as there is no link.
+The components that are getting loaded have to be put in the entryComponents array in the app.module.ts as part of the ngmodule otherwise as part of the treeshaker in the angular build the project wont include that component as there is no link.
+
+## Explanation
+
+When the dynamic component is initially loaded in you need, the write value gets called to pass in the values. If the form has other default values or validators you need to propogate the the form state back up so the parent knows about it immediately. Doing this set validators inside the directive and inside the parent form.
+
+When the dynamic component changes, the validators for those fields need to be removed. This requires removing the validators inside the directive and the parent form control that matches the name set in the directive.
+
+
+**Inside the parent:**
+this.form.get('color').setValidators(undefined);
+this.form.get('color').updateValueAndValidity({ emitEvent: false });
+
+**Inside the directive**
+this.container.clear(); // Remove the component view
+this.validators = []; // Remove the validators
+this._control = this.formDirective.removeControl(this); // Remove the previous control instance of the directive.
+this.valueAccessor = undefined; // Remove previous form value.
 
 
 ## Development server
