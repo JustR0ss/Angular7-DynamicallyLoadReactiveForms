@@ -1,6 +1,6 @@
 # Dynamically Load Reactive Forms
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5. &lt;id&gt;
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5. 
 
 This project shows how to dynamically add in components to display and make the their form part of the over all reactive form.
 
